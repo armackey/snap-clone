@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/ui-router/release/angular-ui-router.min.js"></script>
+  <script src="js/app.js"></script>
+
   <title>Snappy</title>
 </head>
 <body ng-app = 'app'>
+<ui-view>
+  <nav>
+          <li><a href="#/">home</a></li>
+           <li><a href="#/about">about</a></li>
+           <li><button>signout</button></li>
+  </nav>
     
 </body>
-<script src="../bower_components/angular/angular.min.js"></script>
-<script src="../bower_components/ui-router/release/angular-ui-router.min.js"></script>
-<script src="js/app.js"></script>
+
+
 </html>

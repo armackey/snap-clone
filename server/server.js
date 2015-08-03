@@ -22,12 +22,12 @@ var UserModel = [
     message:"janky"
   }];
 
-app.get('/comments',function(req,res){
+app.get('/comments', function(req,res){
   res.send(UserModel);
 });
 
 //pushes new message to the userModel array
-app.post('/comments',function(req,res){
+app.post('/comments', function(req,res){
   UserModel.push(req.body.message);
   res.send(req.body.message);
 });

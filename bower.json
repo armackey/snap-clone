@@ -1,0 +1,22 @@
+{
+  "name": "snap-clone",
+  "version": "0.0.0",
+  "homepage": "https://github.com/armackey/snap-clone",
+  "authors": [
+    "RedWood <mackey91@gmail.com>",
+    "IamSamara"
+  ],
+  "description": "first project",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "ui-router": "~0.2.15"
+  }
+}

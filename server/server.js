@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+console.log("connected to server")
 
 app.use('/',express.static('client'));
 
@@ -22,14 +24,22 @@ var UserModel = [
     comment:"janky"
   }];
 
+app.use(bodyParser.json());
+
 app.get('/comments', function(req,res){
   res.send(UserModel);
 });
 
 //pushes new comment to the userModel array
 app.post('/comments', function(req,res){
+
   UserModel.push(req.body.comment);
   res.send(req.body.comment);
+
+  UserModel.push(req.body);
+  console.log("message saved?");
+  res.send(req.body);
+
 });
 
 app.listen(3000);

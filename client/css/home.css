@@ -3,5 +3,10 @@
   width: 300px;
   height: 500px;
   border: black solid thin;
+
   right: -40px;
+
+  font-size: 10px;
+  overflow: scroll;
+
 }

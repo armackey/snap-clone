@@ -6,7 +6,7 @@ angular.module('app',
     'icecomm.local',
     'icecomm.peer',
     'icecomm.leave',
-    'auth0', 
+    'auth0',
     'angular-storage',
     'angular-jwt'
   ])
@@ -32,7 +32,7 @@ angular.module('app',
             controller: 'loginCtrl',
             controllerAs: 'loginCtrl'
         });
-        
+
         $urlRouterProvider.otherwise('/home');
 
         authProvider.init({
@@ -67,4 +67,3 @@ angular.module('app',
     }
   });
 });
-

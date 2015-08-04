@@ -1,1 +1,15 @@
-home
+<div class="comment-box">
+  {{homeCtrl.products}}
+  {{homeCtrl.data.username}}
+  <div ng-repeat = 'comment in comments'>
+    <p>
+      {{homeCtrl.comment.username}}
+    </p>
+  </div>
+</div>
+
+<form class="" action="index.html" method="post">
+  <input type="text" placeholder ='username' name="username" value="">
+  <input type="text" placeholder ='message' name="username" value="">
+  <input type="button" name="submit" ng-click='Submit()' value='submit'>
+</form>

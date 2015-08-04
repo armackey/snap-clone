@@ -18,7 +18,10 @@ angular.module('app',
             url: '/home',
             templateUrl: 'partials/home.html',
             controller: 'homeController',
-            controllerAs: 'homeCtrl'
+            controllerAs: 'homeCtrl',
+            data: { 
+              requiresLogin: true 
+            }
         })
         .state('about', {
             url: '/about',
@@ -38,7 +41,7 @@ angular.module('app',
         authProvider.init({
             domain: 'youknow.auth0.com',
             clientID: 'lbxpZ2zoAxk1xmpt13O2ZDTHlogYgJjp',
-            loginUrl: '/login'
+            loginState: 'login'
           });
 
         jwtInterceptorProvider.tokenGetter = function(store) {

@@ -1,6 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var jwt = require('express-jwt');
+
+var jwtCheck = jwt({
+  secret: new Buffer('SMgVKSXGAiijvNmrsdqpFSteA6hsO76LXVxT4TuBd-FDEWscUhUml9MD0_k1nUOA', 'base64'),
+  audience: 'lbxpZ2zoAxk1xmpt13O2ZDTHlogYgJjp'
+});
+
+app.use('/home', jwtCheck);
 
 // var index = require('./routes/index');
 // app.use('/', index);

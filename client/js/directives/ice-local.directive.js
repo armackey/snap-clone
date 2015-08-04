@@ -1,7 +1,7 @@
 angular.module('icecomm.local', [])
   .directive('icecommLocal', icecommLocal);
 
-  function icecommLocal($sce) {
+  function icecommLocal($sce, $http) {
     return {
       restrict: 'E',
       replace: true,
@@ -14,7 +14,12 @@ angular.module('icecomm.local', [])
           $scope.$apply(function () {
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
             $scope.local = peer;
-            console.log(peer);
+            if (peer) {
+              var bcID = peer.ID;
+             $http.post('/broadcastID', bcID).success(function (data) {
+              
+             });
+          }
           });
         });
       }

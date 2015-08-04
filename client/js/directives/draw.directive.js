@@ -61,7 +61,8 @@ angular.module('app').directive("drawing", function(){
         '#FF00FF'
         ];
       var box = document.getElementsByClassName('color');
-      console.log(box.style.text);
+      // var boxText = box[0].innerText;
+    
       var change = ' ';
       $scope.changeColor = function (index) {
         change = $scope.palette[index];

@@ -13,14 +13,11 @@ angular.module('icecomm.peer', [])
         var comm = icecomm.comm;
         $scope.peers = [];
 
-        comm.on("connected", function(peer){
+        comm.on("connected", function (peer) {
           $scope.$apply(function () {
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
             // $scope.peers.push(peer);
-            console.log($scope.peers);
-            // if ($scope.peers[0]) {
-            //   return;
-            // }
+
           });
         });
 

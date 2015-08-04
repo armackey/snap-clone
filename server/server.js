@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-console.log("connected to server")
 
-app.use('/',express.static('client'));
+// var index = require('./routes/index');
+// app.use('/', index);
+app.use(express.static('client'));
+
+app.post('/broadcastID', function (req, res) {
+  res
+});
 
 //before trying to connect to the database, saving messages to array. refresh when server restarts
 //initiated dummy data so the page isn't blank.
@@ -41,5 +46,5 @@ app.post('/comments', function(req,res){
   res.send(req.body);
 
 });
-
+console.log("connected to server");
 app.listen(3000);

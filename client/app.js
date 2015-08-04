@@ -20,7 +20,9 @@ angular.module('app',
         })
         .state('about', {
             url: '/about',
-            templateUrl: 'partials/about.html'
+            templateUrl: 'partials/about.html',
+            controller: 'actionCtrl',
+            controllerAs: 'actionCtrl'
         });
 
 });

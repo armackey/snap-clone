@@ -19,7 +19,7 @@ angular.module('icecomm.peer', [])
             // $scope.peers.push(peer);
             console.log($scope.peers);
             // if ($scope.peers[0]) {
-              
+            //   return;
             // }
           });
         });

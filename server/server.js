@@ -9,27 +9,27 @@ var UserModel = [
   {
     username: 'iam_samara',
     date: '08-03-15',
-    message:"today you are you, that is truer than true, there is no one alive that is youer that you!"
+    comment:"today you are you, that is truer than true, there is no one alive that is youer that you!"
   },
   {
     username: 'armackey',
     date: '08-03-15',
-    message:"The mack attack"
+    comment:"The mack attack"
   },
   {
     username: 'jasmine',
     date: '08-03-15',
-    message:"janky"
+    comment:"janky"
   }];
 
 app.get('/comments', function(req,res){
   res.send(UserModel);
 });
 
-//pushes new message to the userModel array
+//pushes new comment to the userModel array
 app.post('/comments', function(req,res){
-  UserModel.push(req.body.message);
-  res.send(req.body.message);
+  UserModel.push(req.body.comment);
+  res.send(req.body.comment);
 });
 
 app.listen(3000);

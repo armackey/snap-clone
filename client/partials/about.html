@@ -1,7 +1,14 @@
-  
+   <!-- canvas stores captured image -->
+  <canvas id = "canvas" drawing></canvas>
+  <!-- when we draw the image <img> will hold final image-->
+  <img id = "photo" ng-src = "">
+<button ng-click = "takePic()">Submit</button> 
   <icecomm-leave text = "Leave"></icecomm-leave>
   <icecomm-connect audio = false room="custom room" text="BROADCAST" limit="1"> </icecomm-connect>
-  <icecomm-local></icecomm-local>
+  <icecomm-local id = "local"></icecomm-local>
   <!-- <icecomm-peer prestream"hide"></icecomm-peer> -->
-  
+<div id = 'palette' ng-repeat = "color in palette">
+  <button class="color" ng-click = "changeColor($index)">{{color}}</button>
+</div>
+
 

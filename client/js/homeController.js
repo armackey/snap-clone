@@ -8,10 +8,10 @@ angular.module('app').controller('homeController',['$http','$scope', function ($
   });
 
   this.sendMessage = function(){
-    $http.post('/comments',this.newMessage).success(function(data,status){
+    $http.post('/comments', this.newMessage).success(function (data, status){
       $scope.data.push(data);
-      this.newMessage.username = "";
-      $scope.newMessage.message = "";
+      // $scope.newMessage.username = " ";
+      // $scope.newMessage.message = " ";
     });
   };
 

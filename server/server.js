@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 app.use(express.static('client'));
 
 app.post('/broadcastID', function (req, res) {
-  res
+  
 });
 
 //before trying to connect to the database, saving messages to array. refresh when server restarts
@@ -37,9 +37,6 @@ app.get('/comments', function(req,res){
 
 //pushes new comment to the userModel array
 app.post('/comments', function(req,res){
-
-  UserModel.push(req.body.comment);
-  res.send(req.body.comment);
 
   UserModel.push(req.body);
   console.log("message saved?");

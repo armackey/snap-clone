@@ -31,6 +31,6 @@ angular.module('app').controller('homeController',['$http','$scope',function($ht
       this.newMessage.username = "";
       $scope.newMessage.message = "";
     });
-  }
+  };
 
 }]);

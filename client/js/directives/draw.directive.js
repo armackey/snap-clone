@@ -60,7 +60,8 @@ angular.module('app').directive("drawing", function(){
         '#66FF66',
         '#FF00FF'
         ];
-      
+      var box = document.getElementsByClassName('color');
+      console.log(box.style.text);
       var change = ' ';
       $scope.changeColor = function (index) {
         change = $scope.palette[index];

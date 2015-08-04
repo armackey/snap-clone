@@ -1,24 +1,20 @@
+  
+
   <icecomm-leave text = "Leave"></icecomm-leave>
   <icecomm-connect audio = false room="custom room" text="BROADCAST" limit="1"> </icecomm-connect>
   <icecomm-local id = "local"></icecomm-local>
 <div class="comment-box">
 
   <div ng-repeat = "data in data">
-  
-    
       username: {{data.username}} <br>
       {{data.comment}}
-
-
 
   <div ng-repeat="data in data" class="col-md-6">
     <div class="thumbnail">
      <p class="username">Username: {{data.username }} on {{data.date | date}}</p>
      <p class="comment">{{data.comment }}</p>
     </div>
-
   </div>
-
 </div>
 
 

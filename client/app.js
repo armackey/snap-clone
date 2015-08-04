@@ -1,4 +1,12 @@
-angular.module('app', ['ui.router'])
+angular.module('app',
+    [
+    'ui.router',
+    'icecomm.controller',
+    'icecomm.connect',
+    'icecomm.local',
+    'icecomm.peer',
+    'icecomm.leave'
+  ])
   .config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/home');

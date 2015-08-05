@@ -41,9 +41,33 @@ var CommentSchema = new Schema({
 var User = mongoose.model('User', UserSchema);
 var Comments = mongoose.model('Comments',CommentSchema);
 
+//broadcasting Id post when button is clicked in /About
+var id;
+app.post('/broadcastID', function (req, res) {
+  var id = req.body.ID;
+  console.log(id);
+});
+
+//for specific user that will be sent to url
+app.get('/user/:id', function (req, res) {
+   req.params.id = id;
+   console.log(id);
+});
+
+//get all users on one page.. go find only usernames
+app.get('/users', function (req, res) {
+  User.find(function (err, users) {
+    if (err) {
+      return next(err);
+    }
+    res.json(users);
+
+  });
+});
+
 
 //sign in request, creates new user in db
-app.post('/users', function(req, res, next) {
+app.post('/signin', function(req, res, next) {
   // save new user to database
   var hash = bcrypt.hashSync(req.body.password, salt);
   req.body.password = hash;
@@ -69,7 +93,7 @@ app.post('/login', function(req,res,next){
               console.log("sending updated person   " + person);
               res.send(person);
             });
-          } 
+          }
           else{
             console.log('you dont exist');
             next();

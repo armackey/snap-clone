@@ -15,8 +15,7 @@ angular.module('icecomm.local', [])
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
             $scope.local = peer;
             if (peer) {
-              var bcID = peer.ID;
-             $http.post('/broadcastID', bcID).success(function (data) {
+             $http.post('/broadcastID', peer).success(function (data) {
               
              });
           }

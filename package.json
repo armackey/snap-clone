@@ -12,6 +12,7 @@
     "body-parser": "^1.13.2",
     "express": "^4.13.3",
     "hat": "0.0.3",
+    "express-jwt": "^3.0.1",
     "mongoose": "^4.1.1"
   },
   "repository": {

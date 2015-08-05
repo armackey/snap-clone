@@ -9,7 +9,7 @@ function loginCtrl($http){
         var that = this;
 
         console.log(that.user);
-        $http.post('/users', that.user).success(function(data){
+        $http.post('/signin', that.user).success(function(data){
           console.log('thank you for signing up');
         });
       }

@@ -9,6 +9,7 @@ angular.module('app').controller('homeController',['$http','$scope', function ($
 
   this.sendMessage = function(){
     $http.post('/comments', this.newMessage).success(function (data, status){
+      console.log("data from post comment is " + data);
       $scope.data.push(data);
       // $scope.newMessage.username = " ";
       // $scope.newMessage.message = " ";

@@ -32,27 +32,14 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
-//array holding messages since no connected to db
-var UserModel = [
-  {
-    username: 'iam_samara',
-    date: Date.now(),
-    comment:"today you are you, that is truer than true, there is no one alive that is youer that you!"
-  },
-  {
-    username: 'armackey',
-    date: Date.now(),
-    comment:"The mack attack"
-  },
-  {
-    username: 'jasmine',
-    date: Date.now(),
-    comment:"janky"
-  }];
-
-
+var CommentSchema = new Schema({
+  date: { type: Date, default: Date.now },
+  username: { type: String, index: { unique: true } },
+  comment:{type: String}
+});
 
 var User = mongoose.model('User', UserSchema);
+var Comments = mongoose.model('Comments',CommentSchema);
 
 
 //sign in request, creates new user in db
@@ -82,7 +69,7 @@ app.post('/login', function(req,res,next){
               console.log("sending updated person   " + person);
               res.send(person);
             });
-          } // -> Password123: true
+          } 
           else{
             console.log('you dont exist');
             next();
@@ -94,14 +81,29 @@ app.post('/login', function(req,res,next){
 
 //get request for all comments.
 app.get('/comments', function(req,res){
-  res.send(UserModel);
+//  res.send();
+  Comments.find({},function(err, data){
+    if(err) throw err;
+    res.send(data);
+  })
 });
 
 //pushes new message to the userModel array
 app.post('/comments', function(req,res){
-  UserModel.push(req.body);
-  console.log("message saved");
-  res.send(req.body);
+  // UserModel.push(req.body);
+  // console.log("message saved");
+  // res.send(req.body);
+  console.log(req.body);
+  var newComment = new Comments({
+    date: req.body.date,
+    username: req.body.username,
+    comment: req.body.comment
+  });
+  newComment.save(function(){
+    console.log('comment saved in db');
+    res.send(newComment);
+  });
+
 });
 
 app.listen(3000);

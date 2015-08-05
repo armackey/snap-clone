@@ -5,10 +5,7 @@ angular.module('app',
     'icecomm.connect',
     'icecomm.local',
     'icecomm.peer',
-    'icecomm.leave',
-    'auth0', 
-    'angular-storage',
-    'angular-jwt'
+    'icecomm.leave'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -30,6 +27,12 @@ angular.module('app',
             templateUrl: 'partials/login.html',
             controller: 'loginCtrl',
             controllerAs: 'loginCtrl'
+        })
+        .state('users', {
+            url: '/users',
+            templateUrl: 'partials/users.html',
+            controller: 'userCtrl',
+            controllerAs: 'userCtrl'
         });
         
         $urlRouterProvider.otherwise('/home');

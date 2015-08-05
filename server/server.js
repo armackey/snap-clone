@@ -3,47 +3,46 @@ var app = express();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bodyParser = require('body-parser');
-var jwt = require('express-jwt');
-
-app.use('/home', jwtCheck);
-
-console.log("connected to server");
 
 
-
-//var url = 'mongodb://localhost27017/usersDB';
 mongoose.connect('mongodb://localhost/snapdb');
 
-app.use('/',express.static('client'));
-//before trying to connect to the database, saving messages to array. refresh when server restarts
-//initiated dummy data so the page isn't blank.
-
 var UserSchema = new Schema({
-  login: { type: String},
-  password:{ type: String, default: 'hahaha'},
+  username: { type: String, required: true, unique: true},
+  password: { type: String, required: true}
 });
 
 
-var UserModel = [
-  {
-    username: 'iam_samara',
-    date: Date.now(),
-    comment:"today you are you, that is truer than true, there is no one alive that is youer that you!"
-  },
-  {
-    username: 'armackey',
-    date: Date.now(),
-    comment:"The mack attack"
-  },
-  {
-    username: 'jasmine',
-    date: Date.now(),
-    comment:"janky"
-  }];
+// var CommentSchema = new Schema({
+//   comment: {type: String, required: true}
+// });
 
-
-var MyModel = mongoose.model('User', UserSchema);
+app.use(express.static('client'));
 app.use(bodyParser.json());
+// before trying to connect to the database, saving messages to array. refresh when server restarts
+// initiated dummy data so the page isn't blank.
+
+var id;
+app.post('/broadcastID', function (req, res) {
+  var id = req.body.ID;
+  console.log(id);
+});
+
+app.get('/user/:id', function (req, res) {
+   req.params.id = id;
+   console.log(id);
+});
+
+app.get('/users', function (req, res) {
+  User.find(function (err, users) {
+    if (err) {
+      return next(err);
+    }
+    res.json(users);
+
+  });
+});
+
 
 app.get('/comments', function(req,res){
   res.send(UserModel);

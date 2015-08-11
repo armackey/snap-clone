@@ -8,17 +8,23 @@
   <link rel="stylesheet" href="css/about.css">
 
           <!-- JAVASCRIPTS -->
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/ui-router/release/angular-ui-router.min.js"></script>
-  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="libs/angular/angular.js"></script>
+  <script src="libs/ui-router/release/angular-ui-router.js"></script>
+  <script src="libs/jquery/dist/jquery.js"></script>
+  <script src="libs/angular-resource/angular-resource.js"></script>
+  
 
   <script src="app.js"></script>
         <!-- CONTROLLERS -->
   <script type="text/javascript" src="js/homeController.js"></script>
   <script src="js/controllers/action.ctrl.js"></script>
-  <script src="js/controllers/login.ctrl.js">
+  <script src="js/controllers/login.ctrl.js"></script>
+  <script src="js/controllers/user.ctrl.js"></script>
 
-  </script>
+  <!-- SERVICES -->
+  <script src="js/services/user.factory.js"></script>
+
+
 
       <!-- DIRECTIVES -->
   <script src="js/directives/draw.directive.js"></script>
@@ -42,6 +48,7 @@
          <li><a ui-sref="home">Home</a></li>
          <li><a ui-sref="about">About</a></li>
          <li><a ui-sref="login">login</a></li>
+         <li><a ui-sref="users">users</a></li>
        </ul>
      </div><!--/.nav-collapse -->
    </div>

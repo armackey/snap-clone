@@ -24,4 +24,5 @@ app.post('/broadcastID', function (req, res) {
 app.listen(3000);
 
 module.exports.app = app;
-var userRoutes = require('../routes/index');
+var userRoutes = require('./routes/index');
+var commentRoutes = require('./routes/comment');

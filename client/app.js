@@ -6,8 +6,9 @@ angular.module('app',
     'icecomm.local',
     'icecomm.peer',
     'icecomm.leave',
-    'userService',
-    'ngResource'
+    'ngResource',
+    'user.service',
+    'comment.service'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -15,14 +16,8 @@ angular.module('app',
         .state('home', {
             url: '/home',
             templateUrl: 'partials/home.html',
-            controller: 'homeController',
+            controller: 'homeCtrl',
             controllerAs: 'homeCtrl'
-        })
-        .state('about', {
-            url: '/about',
-            templateUrl: 'partials/about.html',
-            controller: 'actionCtrl',
-            controllerAs: 'actionCtrl'
         })
         .state('login', {
             url: '/login',

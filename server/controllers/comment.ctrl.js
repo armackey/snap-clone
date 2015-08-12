@@ -14,7 +14,7 @@ module.exports.postComments = function (req, res) {
     comment: req.body.comment
   });
   newComment.save(function(){
-    console.log('comment saved in db');
+    console.log(req.body);
     res.send(newComment);
   });
 };

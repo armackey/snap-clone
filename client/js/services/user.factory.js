@@ -1,8 +1,7 @@
 angular
-  .module('userService', [])
-    .factory('userService', 
-      function ($http, $resource) {
-      
-      return $resource('/users/:user_id');
+  .module('user.service', [])
+    .factory('userService', ['$resource',
+      function ($resource) {
+        return $resource('/users/:user_id', {id: '@id'}, {});
+    }]);
 
-    });

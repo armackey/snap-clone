@@ -21,18 +21,6 @@ app.post('/broadcastID', function (req, res) {
   console.log(id);
 });
 
-//for specific user that will be sent to url
-app.get('/user/:id', function (req, res) {
-  User.findOne({_id: id}, (function (err, user) {
-     if (err) {
-      return next(err);
-    }
-    
-  }));
-   
-});
-
-
 app.listen(3000);
 
 module.exports.app = app;

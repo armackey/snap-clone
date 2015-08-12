@@ -1,7 +1,10 @@
 angular.module('app')
-  .controller('userCtrl', ['$http', '$scope', function ($http, $scope) {
-    $http.get('/users').success(function (data) {
-      console.log(data);
-      $scope.users = data;
-    });
+  .controller('userCtrl', ['$http', '$scope', 'userService', '$stateParams', 
+    function ($http, $scope, userService, $stateParams) {
+
+  var self = this;
+
+  this.users = userService.query();
+  
+
   }]);

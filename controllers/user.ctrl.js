@@ -43,10 +43,18 @@ module.exports.login = function (req, res) {
   });
 };
 
+module.exports.oneUser = function (req, res) {
+  User.findById(req.params.user_id, function (err, user) {
+    if (err)
+      throw err;
+    res.send(user);
+  });
+};
+
 module.exports.getComments = function (req, res) {
-  Comments.find({},function(err, data){
+  Comments.find({}, function(err, comments){
     if(err) throw err;
-    res.send(data);
+    res.send(comments);
   });
 };
 

@@ -1,12 +1,8 @@
 angular
-  .module('user.factory', [])
-    .factory('userFactory', function ($http) {
+  .module('userService', [])
+    .factory('userService', 
+      function ($http, $resource) {
       
-      return {
-        get: function () {
-          
-        }
-      }
-
+      return $resource('/users/:user_id');
 
     });

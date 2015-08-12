@@ -6,7 +6,8 @@ angular.module('app',
     'icecomm.local',
     'icecomm.peer',
     'icecomm.leave',
-    'user.factory'
+    'userService',
+    'ngResource'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -34,6 +35,10 @@ angular.module('app',
             templateUrl: 'partials/users.html',
             controller: 'userCtrl',
             controllerAs: 'userCtrl'
+        })
+        .state('user', {
+            url:'/users/:id',
+            templateUrl: 'partials/single-user.html',
         });
 
         $urlRouterProvider.otherwise('/home');

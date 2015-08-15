@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-
-
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./models/user.model');
 mongoose.connect('mongodb://localhost/snapdb2', function(err){
   if (err) { 
     return err;
@@ -11,9 +12,11 @@ mongoose.connect('mongodb://localhost/snapdb2', function(err){
   console.log('connected to DB');
 });
 
+
 app.use('/',express.static('client'));
 app.use(bodyParser.json());
-
+app.use(passport.initialize());
+app.use(passport.session());
 //broadcasting Id post when button is clicked in /About
 var id;
 app.post('/broadcastID', function (req, res) {
@@ -24,5 +27,7 @@ app.post('/broadcastID', function (req, res) {
 app.listen(3000);
 
 module.exports.app = app;
-var userRoutes = require('./routes/index');
-var commentRoutes = require('./routes/comment');
+require('./routes/index');
+require('./routes/comment');
+// require('./config/pass.routes');
+

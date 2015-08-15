@@ -20,10 +20,6 @@ angular
             self.comment = Comment.query();
           });
           
-          
-        // $http.post('/comments', this.newMessage).success(function (data){
-          
-        //   });
         };
 
 
@@ -38,7 +34,6 @@ angular
           // canvas.style.height = "0xp";
           // photo.style.width = "400px";
           // photo.style.height = "250px";
-          console.log('work');
 
         };
 

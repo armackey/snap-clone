@@ -8,9 +8,12 @@ angular.module('app',
     'icecomm.leave',
     'ngResource',
     'user.service',
-    'comment.service'
+    'comment.service',
+    'auth.service',
+    'auth.interceptor',
+    'auth.token'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
         .state('home', {
@@ -37,4 +40,6 @@ angular.module('app',
         });
 
         $urlRouterProvider.otherwise('/home');
+
+        $locationProvider.html5Mode(true);
   });

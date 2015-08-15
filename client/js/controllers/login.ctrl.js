@@ -1,22 +1,27 @@
-angular.module('app').controller('loginCtrl',loginCtrl);
-loginCtrl.$inject = ['$http'];
+angular.module('app').controller('loginCtrl', loginCtrl);
+loginCtrl.$inject = ['$http', 'AuthToken', '$state'];
 
-function loginCtrl($http){
+function loginCtrl($http, AuthToken, $state){
 
     this.user = {};
 
     this.signIn = function(){
-        var that = this;
+        var self = this;
 
-        console.log(that.user);
-        $http.post('/signin', that.user).success(function(data){
-          console.log('thank you for signing up');
+        console.log(self.user);
+        $http.post('/signup', self.user).success(function(data){
+          console.log(data);
+          AuthToken.setToken(data.token);
+          $state.go('home');
+          return data;
         });
-      }
+      };
     this.logIn = function(){
-      var that = this;
-      $http.post('/login',that.user).success(function(data,status){
-        document.cookie = "access_token=" + data.access_token;
+      var self = this;
+      $http.post('/login',self.user).success(function(data, status){
+        console.log(data);
+        AuthToken.setToken(data.token);
+        $state.go('home');
       });
-    }
+    };
 }

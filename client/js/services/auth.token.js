@@ -3,11 +3,12 @@ angular
     .factory('AuthToken', ['$window', function ($window) {
         var self = this;
 
-        // get token
+        // gets token 
         self.getToken = function () {
           return $window.localStorage.getItem('token');
         };
 
+        // adds and removes token on login/signup
         self.setToken =  function (token) {
           if (token) {
             $window.localStorage.setItem('token', token);

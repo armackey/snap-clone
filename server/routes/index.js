@@ -3,14 +3,15 @@ var User = require('../models/user.model');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var secret = 'Victoria_Secret';
-var commentCtrl = require('../controllers/comment.ctrl');
+// import our app object
 var app = module.parent.exports.app;
 
 
-
+// allowed routes without authentication
 app.post('/login', userCtrl.login);
 app.post('/signup', userCtrl.signup);
-app.get('/logout', userCtrl.logout);
+
+// middleware that checks for jwt
 app.use(function(req, res, next) {
 
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -42,8 +43,7 @@ app.use(function(req, res, next) {
     }
   });
 
-app.get('/comments', commentCtrl.getComments);
-app.post('/comments', commentCtrl.postComments);
+app.get('/logout', userCtrl.logout);
 app.get('/users', userCtrl.getUsers);
 app.get('/users/:user_id', userCtrl.oneUser);
 app.get('/me', userCtrl.me);

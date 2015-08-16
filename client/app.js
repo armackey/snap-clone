@@ -40,45 +40,11 @@ angular.module('app',
         });
        
         $urlRouterProvider.otherwise('/login');
+        // part 2 of removing # from url
         $locationProvider.html5Mode(true);
-        // $httpProvider.interceptors.push(['$q', '$state', '$localStorage', function ($q, $state, $localStorage) {
-        //    return {
-        //        'request': function (config) {
-        //            config.headers = config.headers || {};
-        //            if ($localStorage.token) {
-        //                config.headers.Authorization = $localStorage.token;
-        //            }
-        //            return config;
-        //        },
-        //        'responseError': function (response) {
-        //            if (response.status === 401 || response.status === 403) {
-        //                $state.go('login');
-        //            }
-        //            return $q.reject(response);
-        //        }
-        //    };
-        // }]);
+        // part 1 is at top of index.html file -- <base href="/"> :)
 
-  // var interceptor = ['$q', '$injector', function($q, $injector) {
-  //     function success(response) {
-  //         return response;
-  //     }
-
-  //     function error(response) {
-
-  //         if (response.status === 401) {
-  //             $injector.get('$state').transitionTo('login');
-  //             return $q.reject(response);
-  //         } else {
-  //             return $q.reject(response);
-  //         }
-  //     }
-
-  //     return function(promise) {
-  //         return promise.then(success, error);
-  //     };
-  // }];
-
+  // adds our AuthIntercept service to every $http request
+  // with every $http request, user must have token!
   $httpProvider.interceptors.push('AuthIntercept');
- // $httpProvider.interceptors.push('AuthIntercept');
   });

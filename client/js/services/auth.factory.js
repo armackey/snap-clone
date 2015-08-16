@@ -5,7 +5,6 @@ angular
       var self = this;
 
       // check if a user is logged in
-      // checks if there is a local token self.isLoggedIn = function() {
       self.isLoggedIn = function () {
         if (AuthToken.getToken())
           return true;
@@ -13,6 +12,7 @@ angular
           return false;
       };
 
+      // current user information and route.
       self.getUser = function() { 
         if (AuthToken.getToken())
           return $http.get('/me'); 

@@ -1,13 +1,12 @@
 var User = require('../models/user.model');
 var bcrypt = require('bcrypt-nodejs');
 var salt = bcrypt.genSaltSync(10);
-// var hat = require('hat');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jsonwebtoken');
 var secret = 'Victoria_Secret';
 
-
+// finds users
 exports.getUsers = function (req, res) {
   User.find({}, function (err, users) {
     if (err)
@@ -15,11 +14,13 @@ exports.getUsers = function (req, res) {
     res.send(users);
   });
 };  
+
 exports.logout = function (req, res) {
   req.logout();
   console.log('see-ya!');
   res.redirect('/');
 };
+
 exports.signup = function (req, res, next) {
   passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -68,29 +69,11 @@ passport.authenticate('local', {
       return res.send({message:  'Check username or password :('});
     }
 
-    //user has authenticated correctly thus we create a JWT token 
+    // when user is created. token is created 
+    // server sends token to client
    var token = jwt.sign({username: user.username}, secret);
    res.json({success: true, message: 'Enjoy!', token : token });
   })(req, res, next);
-  // User.findOne({
-  //   username: req.body.username}, function(err, user) {
-  //     if (err) 
-  //       throw err;
-  //     if (user) {
-  //       res.send({message: 'Username taken'});
-  //     } else {
-  //       var hash = bcrypt.hashSync(req.body.password, salt);
-  //       req.body.password = hash;
-  //       var newUser = new User({
-  //         username: req.body.username,
-  //         password: req.body.password,
-  //       });
-  //       newUser.save(function(){
-  //         console.log('newUser created');
-  //         res.json(newUser);
-  //       });
-  //     }
-  //   });
 
 };
 
@@ -126,31 +109,16 @@ passport.authenticate('local', {
       return res.send({message:  'Check username or password :('});
     }
 
-    //user has authenticated correctly thus we create a JWT token 
+    // credentials were accurate
+    // jwt is created and sent to client
     var token = jwt.sign({username: user.username}, secret);
     res.json({success: true, message: 'Enjoy!', token : token });
     
   })(req, res, next);
 
-  // User.findOne({
-  //   username: req.body.username}, function(err, user){
-  //     // user.comparePassword(req.body.password, function(err, user) {
-  //         if (err) throw err;
-  //         if (user) {
-  //            // creating and passing jwt to user
-  //          var token = jwt.sign({username: user.username}, secret);
-  //            res.json({success: true, 
-  //             message: 'Enjoy!', 
-  //             token : token });
-
-  //         } else {
-  //           res.send({message: 'you shall not pass! signup!'});
-  //           next();
-  //         }
-  //     // });
-  // });
 };
 
+// for current user -- may not use...
 exports.me = function (req, res) {
   res.send(req.decoded);
 };
@@ -163,6 +131,8 @@ exports.oneUser = function (req, res) {
   });
 };
 
+// more passport authentication.
+// doesn't work
 exports.isLoggedIn = function (req, res) {
   if (req.isAuthenticated())
           return next();

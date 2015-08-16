@@ -15,7 +15,11 @@ exports.getUsers = function (req, res) {
     res.send(users);
   });
 };  
-
+exports.logout = function (req, res) {
+  req.logout();
+  console.log('see-ya!');
+  res.redirect('/');
+};
 exports.signup = function (req, res, next) {
   passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -149,12 +153,6 @@ passport.authenticate('local', {
 
 exports.me = function (req, res) {
   res.send(req.decoded);
-};
-
-exports.logout = function (req, res) {
-  req.logout();
-  console.log('see-ya!');
-  res.redirect('/');
 };
 
 exports.oneUser = function (req, res) {

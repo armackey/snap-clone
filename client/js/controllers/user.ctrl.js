@@ -1,6 +1,6 @@
 angular.module('app')
-  .controller('userCtrl', ['$http', '$scope', '$stateParams', 'userService',
-    function ($http, $scope, $stateParams, userService) {
+  .controller('userCtrl', ['userService',
+    function (userService) {
       var self = this;
       this.users = userService.query();
       // this.user = userService.get({id: this.id});

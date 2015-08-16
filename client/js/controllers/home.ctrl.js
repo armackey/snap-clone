@@ -1,7 +1,7 @@
 angular
   .module('app')
-    .controller('homeCtrl', ['$http','$scope', '$interval', 'Comment',
-      function ($http, $scope, $interval, Comment) {
+    .controller('homeCtrl', ['$scope', '$interval', 'Comment',
+      function  ($scope, $interval, Comment) {
         
         var self = this;
         // on load, load all comments

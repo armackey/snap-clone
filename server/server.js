@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/snapdb2', function(err){
 app.use('/',express.static('client'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-app.use(passport.session());
+
 //broadcasting Id post when button is clicked in /About
 var id;
 app.post('/broadcastID', function (req, res) {

@@ -61,14 +61,15 @@ passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Invalid username or password'
 },
-    function(err, user, info) {
+  
+  function(err, user, info) {
     if (err) { 
       return next(err);
     }
     if (!user) {
       return res.send({message:  'Check username or password :('});
     }
-
+    console.log('login');
     // when user is created. token is created 
     // server sends token to client
    var token = jwt.sign({username: user.username}, secret);

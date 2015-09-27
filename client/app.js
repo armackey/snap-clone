@@ -11,7 +11,8 @@ angular.module('app',
     'auth.factory',
     'auth.interceptor',
     'user.service',
-    'auth.token'
+    'auth.token',
+    'icecomm.join'
   ])
   .config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
     
@@ -37,6 +38,8 @@ angular.module('app',
         .state('user', {
             url:'/users/:id',
             templateUrl: 'partials/single-user.html',
+            controller: 'broadcastCtrl',
+            controllerAs: 'broadcastCtrl'
         });
        
         $urlRouterProvider.otherwise('/login');

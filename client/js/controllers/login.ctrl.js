@@ -19,7 +19,7 @@ angular
       });
     });
 
-    this.signIn = function(){
+    this.signUp = function() {
         var self = this;
         $http.post('/signup', self.user).success(function(data){
           // add token to our local storage
@@ -29,7 +29,7 @@ angular
         });
       };
 
-    this.logIn = function(){
+    this.logIn = function() {
       var self = this;
       $http.post('/login', self.user).success(function(data) {
         // add token to our local storage

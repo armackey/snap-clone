@@ -12,7 +12,7 @@ angular
         $interval(function () {
           // self.comment = Comment.query();
         }, 3000);
-
+        
 
         this.sendMessage = function() {
           var comment = new Comment();
@@ -25,7 +25,7 @@ angular
         };
 
 
-        $scope.takePic = function () {
+        this.takePic = function () {
           var local = document.getElementById('local');
           var canvas = document.getElementById('canvas');
           var context = canvas.getContext('2d');

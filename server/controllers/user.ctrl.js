@@ -4,21 +4,54 @@ var salt = bcrypt.genSaltSync(10);
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jsonwebtoken');
-var secret = 'Victoria_Secret';
+var config = require('../config/config');
+var secret = config.secret.shh;
 
-// finds users
+// finds users that are currently broadcasting
 exports.getUsers = function (req, res) {
   User.find({}, function (err, users) {
     if (err)
       return err;
-    res.send(users);
+    var broadcasters = users.filter(function (user) {
+      return user.broadcast === true;
+    });
+    res.send(broadcasters);
   });
 };  
 
-exports.logout = function (req, res) {
-  req.logout();
-  console.log('see-ya!');
-  res.redirect('/');
+exports.oneUser = function (req, res) {
+  User.findById(req.params.user_id, function (err, user) {
+    if (err)
+      throw err;
+    res.send(user);
+  });
+};
+
+exports.roomNumber = function (req, res) {
+  User.findById(req.params.user_id, function (err, user) {
+    console.log(req.body);
+    user.room = req.body;
+    user.save(function (err) {
+      if (err) {
+        throw err;
+      } 
+      res.send(user);
+    }); 
+  });
+};
+
+// exports.roomNumber = function (req, res) {
+//   User.
+// };
+
+// more passport authentication.
+// doesn't work
+exports.isLoggedIn = function (req, res) {
+  if (req.isAuthenticated())
+          return next();
+
+      // if they aren't redirect them to the home page
+      res.redirect('/');
 };
 
 exports.signup = function (req, res, next) {
@@ -119,28 +152,14 @@ passport.authenticate('local', {
 
 };
 
+exports.logout = function (req, res) {
+  req.logout();
+  console.log('see-ya!');
+  res.redirect('/');
+};
+
 // for current user -- may not use...
 exports.me = function (req, res) {
   res.send(req.decoded);
 };
-
-exports.oneUser = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
-    if (err)
-      throw err;
-    res.send(user);
-  });
-};
-
-// more passport authentication.
-// doesn't work
-exports.isLoggedIn = function (req, res) {
-  if (req.isAuthenticated())
-          return next();
-
-      // if they aren't redirect them to the home page
-      res.redirect('/');
-};
-
-
 

@@ -1,7 +1,5 @@
-<!-- <div ng-repeat = "user in userCtrl.users">
-  <a ui-sref ="user({id:user._id})"> {{user.username}}</a>
-</div> -->
-
-<icecomm-join audio=false room='hello' limit="2" > </icecomm-join>
-<icecomm-local id = "local" > </icecomm-local>
-<icecomm-peer></icecomm-peer>
+<div ng-repeat = "user in userCtrl.users">
+<!--   <a ui-sref ="user({id:user._id})"> {{user.username}}</a> -->
+<icecomm-join audio=false room="{{user.room}}"> </icecomm-join>
+{{user.room}}
+</div>

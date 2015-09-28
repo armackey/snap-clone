@@ -20,17 +20,19 @@ exports.getUsers = function (req, res) {
 };  
 
 exports.oneUser = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
+  User.findById(req.params.id, function (err, user) {
     if (err)
       throw err;
+    console.log(user);
     res.send(user);
   });
 };
 
-exports.roomNumber = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
-    console.log(req.body);
-    user.room = req.body;
+exports.broadcast = function (req, res)  {
+  User.findOne(req.body.username, function (err, user) {
+    console.log(user);
+    user.room = req.body.room;
+    user.broadcast = true;
     user.save(function (err) {
       if (err) {
         throw err;
@@ -40,9 +42,16 @@ exports.roomNumber = function (req, res) {
   });
 };
 
-// exports.roomNumber = function (req, res) {
-//   User.
-// };
+
+
+exports.roomNumber = function (req, res) {
+  User.findById(req.params.user_id, function (err, user) {
+    console.log(req.body);
+    console.log(user);
+    var room = req.body.room;
+    res.send(room);
+  });
+};
 
 // more passport authentication.
 // doesn't work

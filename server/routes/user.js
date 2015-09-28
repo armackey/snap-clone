@@ -4,6 +4,7 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 var secret = config.secret.shh;
+var passportMiddleware = passport.authenticate({session:false});
 // import our app object
 var app = module.parent.exports.app;
 
@@ -11,7 +12,8 @@ var app = module.parent.exports.app;
 // allowed routes without authentication
 app.post('/login', userCtrl.login);
 app.post('/signup', userCtrl.signup);
-// app.post('/roomnumber', userCtrl.roomNumber);
+app.put('/broadcasting', userCtrl.broadcast);
+app.get('/roomnumber', userCtrl.roomNumber);
 
 // middleware that checks for jwt
 // app.use(function(req, res, next) {
@@ -47,6 +49,6 @@ app.post('/signup', userCtrl.signup);
 
 app.get('/logout', userCtrl.logout);
 app.get('/users', userCtrl.getUsers);
-app.get('/users/:user_id', userCtrl.oneUser);
+app.get('/users/:id', userCtrl.oneUser);
 app.get('/me', userCtrl.me);
 

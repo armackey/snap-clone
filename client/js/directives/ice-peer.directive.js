@@ -12,12 +12,13 @@ angular.module('icecomm.peer', [])
       link: function($scope, ele, atts, icecomm) {
         var comm = icecomm.comm;
         $scope.peers = [];
-
+        
         comm.on("connected", function (peer) {
           $scope.$apply(function () {
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
-            // $scope.peers.push(peer);
-
+            $scope.peers.push(peer);
+            
+            console.log($scope.peers);
           });
         });
 

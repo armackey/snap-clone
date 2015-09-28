@@ -6,7 +6,7 @@ var UserSchema = new Schema({
   username: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true},
   broadcast: {type: Boolean, default: false},
-  room: {type: String}
+  room: {type: String, default: ''}
 });
 
 // generating a hash

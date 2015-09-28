@@ -38,8 +38,8 @@ angular.module('app',
         .state('user', {
             url:'/users/:id',
             templateUrl: 'partials/single-user.html',
-            controller: 'broadcastCtrl',
-            controllerAs: 'broadcastCtrl'
+            controller: 'userCtrl',
+            controllerAs: 'userCtrl'
         });
        
         $urlRouterProvider.otherwise('/login');

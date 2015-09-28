@@ -11,10 +11,12 @@
     "bcrypt": "^0.8.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.2",
+    "connect-flash": "^0.1.1",
     "express": "^4.13.3",
     "express-jwt": "^3.0.1",
     "hat": "0.0.3",
     "jsonwebtoken": "^5.0.4",
+    "method-override": "^2.3.5",
     "mongoose": "^4.1.1",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0"

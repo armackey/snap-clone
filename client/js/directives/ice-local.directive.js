@@ -14,11 +14,9 @@ angular.module('icecomm.local', [])
           $scope.$apply(function () {
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
             $scope.local = peer;
-          //   if (peer) {
-          //    $http.put('/peer', peer).success(function (data) {
-          //     console.log(data);
-          //    });
-          // }
+            if (peer) {
+             console.log(peer);
+          }
           });
         });
       }

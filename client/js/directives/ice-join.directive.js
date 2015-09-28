@@ -1,24 +1,27 @@
 angular.module('icecomm.join', [])
   .directive('icecommJoin', icecommJoinDirective);
 
-  function icecommJoinDirective(userService) {
+ function icecommJoinDirective($http, userService, $stateParams) {
     
-    
-    return {
+ return {
       restrict: 'E',
       require: '^icecomm',
       replace: true,
-      scope: true,
+      scope: false,
+
       template: 
-      '<div ng-repeat="user in users">' + 
-      '<a ui-sref ="user({id:user._id})"> {{user.username}}</a></div>',
-      link: function($scope, ele, atts, comm, $http) {
-        $scope.users = userService.query();
-        console.log($scope.users);
-        // $scope.text = atts.text || "join";
-        $scope.user = function() {
+      '<a ui-sref ="user({id:user._id})" ng-click="join(user.id)"> {{user.username}} </a>',
+      link: function($scope, ele, atts, comm) {
+
+        $scope.join = function(user) {
+          console.log('clicked!');
+          // $http.get('/roomnumber', function (data) {
+          //   console.log(data);
+          //   // $scope.data = room;
+          // });
+
           var connectOptions = createConnectOptions();
-          console.log(comm);
+          console.log(atts.room);
           comm.connect(atts.room, connectOptions);
         };
         function createConnectOptions() {

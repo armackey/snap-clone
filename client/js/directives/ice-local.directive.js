@@ -14,9 +14,11 @@ angular.module('icecomm.local', [])
           $scope.$apply(function () {
             peer.stream = $sce.trustAsResourceUrl(peer.stream);
             $scope.local = peer;
-            if (peer) {
-             console.log(peer);
-          }
+          //   if (!peer) {
+          //    $http.put('/stopbroadcast', function () {
+          //     console.log('left broadcast');
+          //    });
+          // }
           });
         });
       }

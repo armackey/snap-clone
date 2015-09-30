@@ -8,10 +8,7 @@ angular.module('app',
     'icecomm.leave',
     'ngResource',
     'comment.service',
-    'auth.factory',
     'auth.interceptor',
-    'user.service',
-    'auth.token',
     'icecomm.join'
   ])
   .config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {

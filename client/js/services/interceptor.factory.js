@@ -3,13 +3,16 @@ angular
     .factory('AuthIntercept', ['AuthToken', '$q', '$injector', 
       function (AuthToken, $q, $injector) {
       
+      
       var self = this;
 
       self.request =  function (config) {
         var token = AuthToken.getToken();
         // if token exists add it to the header
         if (token) {
+
           config.headers['x-access-token'] = token;
+          
         }
           return config;
       };

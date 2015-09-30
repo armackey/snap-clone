@@ -9,7 +9,7 @@ var secret = config.secret.shh;
 
 // finds users that are currently broadcasting
 exports.getUsers = function (req, res) {
-  User.find({}, function (err, users) {
+  User.find({}, '-password', function (err, users) {
     if (err)
       return err;
     var broadcasters = users.filter(function (user) {
@@ -19,8 +19,17 @@ exports.getUsers = function (req, res) {
   });
 };  
 
+// for current user -- may not use...
+exports.me = function (req, res) {
+  User.findOne('-password', function (err, user) {
+    console.log(req.decoded);
+    res.send(req.decoded);
+  });
+
+};
+
 exports.oneUser = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
+  User.findById(req.params.id, '-password', function (err, user) {
     if (err)
       throw err;
     console.log(user);
@@ -29,7 +38,7 @@ exports.oneUser = function (req, res) {
 };
 
 exports.broadcast = function (req, res)  {
-  User.findOne(req.body.username, function (err, user) {
+  User.findOne(req.body.username, '-password', function (err, user) {
     console.log(user);
     user.room = req.body.room;
     user.broadcast = true;
@@ -44,12 +53,17 @@ exports.broadcast = function (req, res)  {
 
 
 
-exports.roomNumber = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
+exports.stopBroadcast = function (req, res) {
+  User.findOne(req.body.username, function (err, user) {
     console.log(req.body);
     console.log(user);
-    var room = req.body.room;
-    res.send(room);
+    user.broadcast = false;
+    user.save(function (err) {
+      if (err) {
+        throw err;
+      }
+      res.send(user);
+    });
   });
 };
 
@@ -69,7 +83,7 @@ exports.signup = function (req, res, next) {
 
       // find a user in mongo with provided username
       User.findOne({username: username}, 
-        function(err, user) {
+      function(err, user) {
         // In case of any error, return using the done method
         if (err){
           return done(err);
@@ -91,6 +105,7 @@ exports.signup = function (req, res, next) {
             if (err){
               throw err;  
             }
+            console.log(newUser);
             return done(null, newUser);
           });
         }
@@ -111,7 +126,7 @@ passport.authenticate('local', {
     if (!user) {
       return res.send({message:  'Check username or password :('});
     }
-    console.log('login');
+    
     // when user is created. token is created 
     // server sends token to client
    var token = jwt.sign({username: user.username}, secret);
@@ -122,7 +137,7 @@ passport.authenticate('local', {
 
 exports.login = function (req, res, next) {
   passport.use(new LocalStrategy(
-    function(username, password, done) {
+     function(username, password, done) {
       User.findOne({ username: username }, function (err, user) {
         if (err) { 
           return done(err); 
@@ -144,7 +159,7 @@ passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Invalid username or password'
 },
-    function(err, user, info) {
+  function(err, user, info) {
     if (err) { 
       return next(err);
     }
@@ -167,8 +182,5 @@ exports.logout = function (req, res) {
   res.redirect('/');
 };
 
-// for current user -- may not use...
-exports.me = function (req, res) {
-  res.send(req.decoded);
-};
+
 

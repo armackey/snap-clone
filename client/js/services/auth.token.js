@@ -1,5 +1,5 @@
 angular
-    .module('auth.token', [])
+    .module('app')
     .factory('AuthToken', ['$window',
         function($window) {
             var self = this;

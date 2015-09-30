@@ -23,7 +23,6 @@ angular.module('icecomm.connect', [])
 
           });
           var connectOptions = createConnectOptions();
-          console.log(broadcast);
           comm.connect(broadcast.room, connectOptions);
         };
         function createConnectOptions() {

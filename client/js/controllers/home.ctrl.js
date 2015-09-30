@@ -1,12 +1,14 @@
 angular
   .module('app')
-    .controller('homeCtrl', ['$scope', '$interval', 'Comment', '$http',
-      function  ($scope, $interval, Comment) {
+    .controller('homeCtrl', ['$scope', '$interval', 'Comment', '$http', 'Auth',
+      function  ($scope, $interval, Comment, Auth) {
         
         var self = this;
         // on load, load all comments
         // query object is a part of $resource
         this.comment = Comment.query();
+        
+        
 
         // update comments feed every 3 seconds
         $interval(function () {
@@ -16,7 +18,7 @@ angular
 
         this.sendMessage = function() {
           var comment = new Comment();
-          comment.username = self.comment.username;
+          comment.username = Auth.currentUser;
           comment.comment = self.comment.comment;
           comment.$save(function () {
             self.comment = Comment.query();
@@ -36,7 +38,6 @@ angular
           // canvas.style.height = "0xp";
           // photo.style.width = "400px";
           // photo.style.height = "250px";
-
         };
 
 }]);

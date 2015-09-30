@@ -1,3 +1,4 @@
+<div ng-include="'./partials/nav.html'"></div>   
      <!-- canvas stores captured image -->
     <canvas id = "canvas" drawing></canvas>
     <!-- when we draw the image <img> will hold final image-->
@@ -27,7 +28,7 @@
 
 <form>
 
-  <input type="text" placeholder ='username' ng-model="homeCtrl.comment.username">
+  <!-- <input type="text" placeholder ='username' ng-model="homeCtrl.comment.username"> -->
   <input type="text" placeholder ='message'  ng-model="homeCtrl.comment.comment">
   <input type="button" name="submit" value='submit' ng-click="homeCtrl.sendMessage()">
 

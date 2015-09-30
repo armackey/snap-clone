@@ -1,0 +1,18 @@
+ <nav class="navbar navbar-default" ng-controller="navCtrl">
+   <div class="container">
+     <div class="navbar-header">
+       <ul class="nav navbar-nav">
+         <li ng-show="!isLoggedIn()"><a>Welcome</a></li>
+         <li ng-show="isLoggedIn()"><a>Welcome {{currentUser}}</a></li>
+       </ul>
+     </div>
+     <ul class="nav navbar-nav navbar-right">
+     <li ng-show="isLoggedIn()"><a ui-sref="home">Home</a></li>
+     <li ng-show="isLoggedIn()"><a ui-sref="users">users</a></li>
+     <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Logout</a>
+       
+       </li>
+     </ul>
+   </div>
+ </nav>
+

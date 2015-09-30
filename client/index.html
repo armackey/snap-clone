@@ -18,50 +18,41 @@
 
   <script src="app.js"></script>
 
-        <!-- SERVICES -->
-  <script src="js/services/user.factory.js"></script>
-  <script src="js/services/comment.factory.js"></script>
-  <script src="js/services/auth.factory.js"></script>
-  <script src="js/services/interceptor.factory.js"></script>
-  <script src="js/services/auth.token.js"></script>
 
-        <!-- CONTROLLERS -->
-  <script type="text/javascript" src="js/controllers/home.ctrl.js"></script>
-  <script src="js/controllers/login.ctrl.js"></script>
-  <script src="js/controllers/user.ctrl.js"></script>
-  <script src="js/controllers/broadcast.ctrl.js"></script>
-
-
-
-
-      <!-- DIRECTIVES -->
-  <script src="js/directives/draw.directive.js"></script>
-  <script src="https://cdn.icecomm.io/icecomm.js" ></script>
-  <script src="js/directives/ice.directive.js"></script>
-  <script src="js/directives/ice-connect.directive.js"></script>
-  <script src="js/directives/ice-leave.directive.js"></script>
-  <script src="js/directives/ice-local.directive.js"></script>
-  <script src="js/directives/ice-peer.directive.js"></script>
-  <script src="js/directives/ice.directive.js"></script>
-  <script src="js/directives/ice-join.directive.js"></script>
 
 
   <title>Snappy</title>
 </head>
 <body ng-app = 'app' icecomm apikey='e5cDAi61vIjVw5FYTObeghpvGyrVILlVx87kx3jnk75k3d/Bu'>
-<!-- Fixed navbar -->
- <nav class="navbar navbar-default">
-   <div class="container">
-     <div class="navbar-header">
-       <ul class="nav navbar-nav">
-         <li><a ui-sref="home">Home</a></li>
-         <li><a ui-sref="login">login</a></li>
-         <li><a ui-sref="users">users</a></li>
-       </ul>
-     </div><!--/.nav-collapse -->
-   </div>
- </nav>
-<ui-view>
+
+<div ui-view=""></div>
+
+      <!-- SERVICES -->
+<script src="js/services/user.factory.js"></script>
+<script src="js/services/comment.factory.js"></script>
+<script src="js/services/auth.factory.js"></script>
+<script src="js/services/interceptor.factory.js"></script>
+<script src="js/services/auth.token.js"></script>
+
+      <!-- CONTROLLERS -->
+<script type="text/javascript" src="js/controllers/home.ctrl.js"></script>
+<script src="js/controllers/login.ctrl.js"></script>
+<script src="js/controllers/user.ctrl.js"></script>
+<script src="js/controllers/nav.ctrl.js"></script>
+
+
+
+
+    <!-- DIRECTIVES -->
+<script src="js/directives/draw.directive.js"></script>
+<script src="https://cdn.icecomm.io/icecomm.js" ></script>
+<script src="js/directives/ice.directive.js"></script>
+<script src="js/directives/ice-connect.directive.js"></script>
+<script src="js/directives/ice-leave.directive.js"></script>
+<script src="js/directives/ice-local.directive.js"></script>
+<script src="js/directives/ice-peer.directive.js"></script>
+<script src="js/directives/ice.directive.js"></script>
+<script src="js/directives/ice-join.directive.js"></script>
 </body>
 
 

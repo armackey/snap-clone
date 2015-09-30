@@ -1,49 +1,42 @@
 angular
   .module('app')
-    .controller('loginCtrl', ['$http', 'AuthToken', '$state', '$rootScope', 'Auth',
-      function ($http, AuthToken, $state, $rootScope, Auth) {
+    .controller('loginCtrl', ['$http', 'AuthToken', '$state', '$rootScope', 'Auth', '$scope',
+      function ($http, AuthToken, $state, $rootScope, Auth, $scope) {
 
       this.user = {};
-      var _this = this;
-   
+      var self = this;
     // gets info if person is logged in
     // toggles true/false and we'll use this to get info on current user 
-    _this.loggedIn = Auth.isLoggedIn();
-
-    console.log(_this.loggedIn);
+    this.isLoggedIn = Auth.isLoggedIn();
+    console.log(this.isLoggedIn);
     // check to see if user is logged in on every request
     $rootScope.$on('$routeChangeStart', function () {
-      _this.loggedIn = Auth.isLoggedIn();
-      Auth.getUser().success(function (data) {
-        _this.user = data;
+    
+      Auth.getUser().then(function (data) {
+        console.log('get user');
+        console.log(data);
+        self.user = data;
       });
     });
 
     this.signUp = function() {
-        var self = this;
-        $http.post('/signup', self.user).success(function(data){
-          // add token to our local storage
-          AuthToken.setToken(data.token);
-          $state.go('home');
-          return data;
-        });
-      };
+      $http.post('/signup', self.user).success(function(data){
+        // add token to our local storage
+        AuthToken.setToken(data.token);
+        Auth.setCurrentUser();
+        $state.go('home');
+        return data;
+      });
+    };
 
     this.logIn = function() {
-      var self = this;
       $http.post('/login', self.user).success(function(data) {
         // add token to our local storage
         AuthToken.setToken(data.token);
+        Auth.setCurrentUser();
         $state.go('home');
       });
     };
 
-    this.logout = function() {
-      $http.get('/logout').success(function(){
-        // will clear token
-        AuthToken.setToken();
-        // send to login page
-        $state.go('login');
-      });
-    };
+
 }]);

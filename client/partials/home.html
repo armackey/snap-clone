@@ -5,31 +5,7 @@
     <img id = "photo" ng-src = "">
   <button ng-click = "homeCtrl.takePic()">Snap Me</button> 
 
-    <icecomm-leave text = "Leave"></icecomm-leave>
+    <icecomm-leave text = "Leave">leave</icecomm-leave>
     <icecomm-connect audio=false> </icecomm-connect>
     <icecomm-local id = "local" > </icecomm-local>
     <!-- <icecomm-peer prestream"hide"></icecomm-peer> -->
-  <div id = 'palette' ng-repeat = "color in palette">
-    <button class="color" ng-click = "changeColor($index)">{{color}}</button>
-  </div>
-
-<div class="comment-box">
-
-      <div ng-repeat="comment in homeCtrl.comment">
-        <div class="thumbnail">
-          <div class="time"> {{comment.date | date: 'shortTime'}} <br> </div>
-            Username: {{comment.username }} <br> <br>
-           {{comment.comment }}
-        </div>
-      </div>
-
-</div>
-
-
-<form>
-
-  <!-- <input type="text" placeholder ='username' ng-model="homeCtrl.comment.username"> -->
-  <input type="text" placeholder ='message'  ng-model="homeCtrl.comment.comment">
-  <input type="button" name="submit" value='submit' ng-click="homeCtrl.sendMessage()">
-
-</form>

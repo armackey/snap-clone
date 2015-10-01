@@ -4,6 +4,9 @@ angular.module('app')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.currentUser = Auth.currentUser;
+    // if (!$scope.currentUser)
+    //     $scope.currentUser = 'guest';
+      
     $scope.logout = function () {
       console.log('logout');
       Auth.logout();

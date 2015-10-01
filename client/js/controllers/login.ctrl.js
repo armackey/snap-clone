@@ -24,7 +24,7 @@ angular
         // add token to our local storage
         AuthToken.setToken(data.token);
         Auth.setCurrentUser();
-        $state.go('home');
+        $state.go('live-users');
         return data;
       });
     };
@@ -34,7 +34,7 @@ angular
         // add token to our local storage
         AuthToken.setToken(data.token);
         Auth.setCurrentUser();
-        $state.go('home');
+        $state.go('live-users');
       });
     };
 

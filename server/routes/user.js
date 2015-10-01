@@ -1,5 +1,5 @@
 var userCtrl = require('../controllers/user.ctrl');
-var User = require('../models/user.model');
+var commentCtrl = require('../controllers/comment.ctrl');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
@@ -8,14 +8,15 @@ var passportMiddleware = passport.authenticate({session:false});
 // import our app object
 var app = module.parent.exports.app;
 
-
 // allowed routes without authentication
 app.post('/login', userCtrl.login);
 app.post('/signup', userCtrl.signup);
 app.put('/broadcasting', userCtrl.broadcast);
 app.put('/stopbroadcast', userCtrl.stopBroadcast);
-
-
+app.get('/users', userCtrl.getUsers);
+app.get('/comments', commentCtrl.getComments);
+app.post('/comments', commentCtrl.postComments);
+app.get('/users/:id', userCtrl.oneUser);
 // middleware that checks for jwt
 app.use(function(req, res, next) {
 
@@ -48,7 +49,5 @@ app.use(function(req, res, next) {
   });
 
 app.get('/logout', userCtrl.logout);
-app.get('/users', userCtrl.getUsers);
-app.get('/users/:id', userCtrl.oneUser);
 app.get('/me', userCtrl.me);
 

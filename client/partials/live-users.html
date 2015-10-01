@@ -1,0 +1,15 @@
+<div ng-include="'./partials/nav.html'"></div>
+
+<div ng-repeat = "user in broadcastCtrl.users">
+<!--   <a ui-sref ="user({id:user._id})"> {{user.username}}</a> -->
+  <icecomm-join audio=false room="{{user.room}}"> </icecomm-join>
+  {{user.room}}
+
+</div>
+
+<div>
+  <p>Why not <a ui-sref="broadcasting">broadcast</a>?</p>
+
+</div>
+
+  

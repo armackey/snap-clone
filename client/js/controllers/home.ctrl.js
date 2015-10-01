@@ -7,8 +7,6 @@ angular
         // on load, load all comments
         // query object is a part of $resource
         this.comment = Comment.query();
-        
-        
 
         // update comments feed every 3 seconds
         $interval(function () {

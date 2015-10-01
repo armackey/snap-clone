@@ -1,0 +1,4 @@
+  <div ng-include="'./partials/nav.html'"></div>
+  <div ng-hide="isLoggedIn()">Sorry you must log in for this feature :(.. I know we suck.</div>
+  <icecomm-connect audio=false text="Start" ng-disabled="!isLoggedIn()"> </icecomm-connect>
+  <icecomm-local> </icecomm-local>

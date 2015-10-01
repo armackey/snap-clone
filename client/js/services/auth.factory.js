@@ -4,6 +4,7 @@ angular
       
       var self = this;
       self.currentUser = {};
+      
       self.logout = function () {
         $http.get('/logout').success(function(){
           // will clear token

@@ -7,11 +7,9 @@
        </ul>
      </div>
      <ul class="nav navbar-nav navbar-right">
-     <li ng-show="isLoggedIn()"><a ui-sref="home">Home</a></li>
-     <li ng-show="isLoggedIn()"><a ui-sref="users">users</a></li>
-     <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Logout</a>
-       
-       </li>
+       <li><a ui-sref="live-users">live-users</a></li>
+       <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Logout</a></li>
+       <li ng-show="!isLoggedIn()"><a ui-sref="login">login</a></li>
      </ul>
    </div>
  </nav>

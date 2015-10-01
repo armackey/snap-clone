@@ -5,7 +5,7 @@ angular.module('icecomm.peer', [])
     return {
       restrict: 'E',
       require: '^icecomm',
-      replace: false,
+      replace: true,
       template:
       '<video ng-repeat="peer in peers" class="icecomm-peer"' +
         'autoplay ng-src="{{peer.stream}}"></video>',

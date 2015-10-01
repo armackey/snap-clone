@@ -1,13 +1,13 @@
 angular.module('icecomm.connect', [])
   .directive('icecommConnect', icecommConnectDirective);
 
-  function icecommConnectDirective($http) {
+  function icecommConnectDirective($http, $state) {
     return {
       restrict: 'E',
       require: '^icecomm',
       replace: true,
       scope: true,
-      template: '<button ng-click="broadcast()">{{text}}</div>',
+      template: '<button ng-click="broadcast()" >{{text}}</div>',
       link: function($scope, ele, atts, comm) {
         $scope.text = atts.text || "broadcast";
         $scope.broadcast = function() {
@@ -17,14 +17,14 @@ angular.module('icecomm.connect', [])
           for (var i = 0; i < 5; i+=1 ) {
             broadcast.room += possible.charAt(Math.floor(Math.random() * possible.length));
           }
-          // var jsonRoom = JSON.stringify(room);
-          console.log(broadcast);
-          $http.put('/broadcasting', broadcast, function () {
+            console.log(broadcast);
+            var connectOptions = createConnectOptions();
+            comm.connect(broadcast.room, connectOptions);
 
-          });
-          var connectOptions = createConnectOptions();
-          comm.connect(broadcast.room, connectOptions);
-        };
+            $http.put('/broadcasting', broadcast);
+          };
+
+
         function createConnectOptions() {
           var connectOptions = {};
           if (atts.video === 'false') {

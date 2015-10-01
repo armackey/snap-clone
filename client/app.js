@@ -20,23 +20,23 @@ angular.module('app',
             controller: 'loginCtrl',
             controllerAs: 'loginCtrl'
         })
-        .state('home', {
-            url: '/home',
-            templateUrl: 'partials/home.html',
-            controller: 'homeCtrl',
-            controllerAs: 'homeCtrl'
+        .state('broadcasting', {
+            url: '/broadcasting',
+            templateUrl: 'partials/broadcasting.html',
+            controller: 'broadcastCtrl',
+            controllerAs: 'broadcastCtrl'
         })
-        .state('users', {
-            url: '/users',
-            templateUrl: 'partials/users.html',
-            controller: 'userCtrl',
-            controllerAs: 'userCtrl'
+        .state('live-users', {
+            url: '/live-users',
+            templateUrl: 'partials/live-users.html',
+            controller: 'broadcastCtrl',
+            controllerAs: 'broadcastCtrl'
         })
         .state('user', {
             url:'/users/:id',
             templateUrl: 'partials/single-user.html',
-            controller: 'userCtrl',
-            controllerAs: 'userCtrl'
+            controller: 'broadcastCtrl',
+            controllerAs: 'broadcastCtrl'
         });
        
         $urlRouterProvider.otherwise('/login');
